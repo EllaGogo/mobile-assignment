@@ -57,6 +57,7 @@ public struct RocketDetailView: View {
         section(.overview) {
           Text(viewStore.rocketData.overview)
             .font(.body)
+            .accessibilityIdentifier(AccessibilityKeys.RocketDetail.rocketTitleText)
         }
         .padding(.bottom)
 
@@ -98,7 +99,12 @@ public struct RocketDetailView: View {
     .padding(.horizontal)
     .navigationTitle(viewStore.rocketData.name)
     .onAppear { viewStore.send(.rocketLaunchDismiss) }
-    .navigationBarItems(trailing: Button(.launch) { viewStore.send(.rocketLaunchTapped) })
+    .navigationBarItems(
+            trailing: Button(.launch) {
+                viewStore.send(.rocketLaunchTapped)
+            }
+            .accessibilityIdentifier(AccessibilityKeys.RocketDetail.launchButton)
+        )
     .navigationDestination(
       store: self.store.scope(
         state: \.$rocketLaunch,

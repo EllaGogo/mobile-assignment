@@ -39,7 +39,6 @@ public struct RocketListView: View {
         }
 
         Spacer()
-
         Button("Logout") {
           viewStore.send(.logoutTapped)
         }
